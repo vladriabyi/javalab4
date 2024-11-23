@@ -121,3 +121,28 @@ class Text {
     }
 }
 
+// Головний клас для виконання задачі
+public class Main {
+    public static void main(String[] args) {
+        // Створення сканера для вводу тексту з консолі
+        Scanner scanner = new Scanner(System.in, "UTF-8");
+        
+        // Запит на введення тексту
+        System.out.println("Введіть текст:");
+        String inputText = scanner.nextLine();
+        
+        // Створення об'єкта тексту
+        Text text = new Text(inputText);
+        
+        // Замінити послідовність табуляцій та пробілів одним пробілом
+        String cleanedText = inputText.replaceAll("[\\t\\s]+", " ");
+        text = new Text(cleanedText);
+        
+        // Сортування речень за кількістю слів
+        text.sortSentencesByWordCount();
+        
+        // Виведення відсортованих речень
+        System.out.println("\nВідсортовані речення за кількістю слів:");
+        text.printSentences();
+    }
+}
