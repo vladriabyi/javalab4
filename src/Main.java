@@ -92,3 +92,32 @@ class Sentence {
         return sentence.toString().trim();
     }
 }
+
+// Клас для тексту, який складається з масиву речень
+class Text {
+    private List<Sentence> sentences;
+
+    public Text(String text) {
+        sentences = new ArrayList<>();
+        String[] sentenceArray = text.split("(?<=[.!?])\\s*"); // Розділення за знаками пунктуації
+
+        for (String sentence : sentenceArray) {
+            sentences.add(new Sentence(sentence.trim()));
+        }
+    }
+
+    public List<Sentence> getSentences() {
+        return sentences;
+    }
+
+    public void sortSentencesByWordCount() {
+        sentences.sort(Comparator.comparingInt(Sentence::getWordCount));
+    }
+
+    public void printSentences() {
+        for (Sentence sentence : sentences) {
+            System.out.println(sentence.getText());
+        }
+    }
+}
+
